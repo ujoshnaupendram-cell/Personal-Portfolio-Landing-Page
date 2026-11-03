@@ -1,0 +1,154 @@
+/* Three-colour palette */
+:root {
+  --ink: #16293f;
+  --brand: #0b63ce;
+  --soft: #eef3f9;
+  --white: #ffffff;
+  --line: #d5e1ee;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.2; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.5rem); margin: 0 0 1rem; }
+h2 { font-size: 1.9rem; margin: 0 0 1.5rem; }
+h3 { font-size: 1.2rem; margin: 0 0 0.5rem; }
+
+a { color: var(--brand); }
+a:hover { text-decoration-thickness: 2px; }
+
+/* Visible keyboard focus */
+a:focus-visible, .button:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Header and navigation (Flexbox) */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--ink);
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.nav a { color: var(--white); text-decoration: none; }
+.nav a:hover { text-decoration: underline; }
+.brand { font-weight: 700; letter-spacing: 0.02em; }
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nav .nav-links a:focus-visible, .nav .brand:focus-visible { outline-color: var(--white); }
+
+/* Sections */
+section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3.5rem 1rem;
+}
+
+/* Hero (Flexbox) */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.hero-text { flex: 1; }
+.lead { font-size: 1.2rem; max-width: 36rem; margin: 0 0 1.5rem; }
+.portrait {
+  width: 100%;
+  max-width: 20rem;
+  height: auto;
+  border-radius: 50%;
+  background: var(--soft);
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: var(--brand);
+  color: var(--white);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.button:hover { background: var(--ink); }
+
+/* Skills and project cards (Grid) */
+.cards {
+  display: grid;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.cards li {
+  padding: 1.25rem;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.cards li:hover { transform: translateY(-4px); border-color: var(--brand); }
+.cards p { margin: 0 0 0.75rem; }
+
+#skills .cards li { font-weight: 600; }
+
+/* Contact */
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.contact-links a { font-weight: 600; }
+
+/* Footer */
+.site-footer {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  background: var(--ink);
+  color: var(--white);
+}
+.site-footer p { margin: 0; }
+
+/* Phones */
+@media (max-width: 700px) {
+  .nav { flex-direction: column; }
+  .nav-links { gap: 0.5rem 1.25rem; flex-wrap: wrap; justify-content: center; }
+  .nav a { display: inline-block; padding: 0.5rem 0.25rem; }  /* larger tap targets */
+  .hero { flex-direction: column-reverse; text-align: center; }
+  .portrait { max-width: 12rem; }
+  .button, .contact-links a, .cards a { display: inline-block; padding: 0.75rem 1rem; }
+  .contact-links { flex-direction: column; gap: 0.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
